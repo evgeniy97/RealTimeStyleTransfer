@@ -1,15 +1,11 @@
 # import the necessary packages
 from imutils.video import VideoStream
-from imutils import paths
 import glob 
 import itertools
-import argparse
-import imutils
 import time
 import cv2
 from style_transfer import Transfer
 import tensorflow as tf
-import utils
 import os
 import numpy as np
 """
@@ -19,7 +15,7 @@ TO DO LIST
 	Take photo
 """
 
-def load(saver,checkpoint_dir):
+def load(saver, checkpoint_dir):
 	if os.path.isdir(checkpoint_dir):
 		ckpt = tf.train.get_checkpoint_state(checkpoint_dir)
 		if ckpt and ckpt.model_checkpoint_path:
@@ -78,7 +74,6 @@ with g.as_default(), tf.Session(config=soft_config) as sess:
 			load(saver, checkpoint_dir)
 		elif key == ord("s"):
 			cv2.imwrite('photo.jpg',_pred)
-			pass
 		elif key == ord("q"):
 			break
 
